@@ -1,6 +1,6 @@
 {
 	"name": "custom-react-native-alert",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "A customizable global alert system for React Native using context and modal.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",

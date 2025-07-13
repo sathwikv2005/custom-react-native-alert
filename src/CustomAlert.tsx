@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { ReactNode, isValidElement } from 'react'
 import { Modal, View, Text, Pressable, StyleSheet, ViewStyle, TextStyle } from 'react-native'
-import { AlertConfig } from './types'
+import { AlertConfig, isObjectButton } from './types'
 
 interface Props extends AlertConfig {
 	visible: boolean
@@ -18,15 +18,47 @@ const CustomAlert: React.FC<Props> = ({
 }) => {
 	const renderButtons = () => {
 		if (buttons && buttons.length > 0) {
-			return buttons.map((btn, idx) => (
-				<View key={idx} style={{ marginLeft: 8 }}>
-					{btn}
-				</View>
-			))
+			return buttons.map((btn, idx) => {
+				if (isValidElement(btn)) {
+					return (
+						<View key={idx} style={{ marginLeft: 8 }}>
+							{btn}
+						</View>
+					)
+				}
+
+				if (isObjectButton(btn)) {
+					const { text, onPress, style: buttonStyle, textStyle } = btn
+					return (
+						<Pressable
+							key={idx}
+							onPress={() => {
+								onClose()
+								onPress?.()
+							}}
+							style={[
+								{
+									paddingVertical: 10,
+									paddingHorizontal: 14,
+									borderRadius: 8,
+									marginLeft: 8,
+								},
+								buttonStyle,
+							]}
+						>
+							<Text style={[{ fontSize: 15 }, textStyle]}>{text}</Text>
+						</Pressable>
+					)
+				}
+
+				return null
+			})
 		}
+
+		// Fallback OK button
 		return (
 			<Pressable
-				style={[styles.button, styles.okButton, customStyles.okButton as ViewStyle]}
+				style={[styles.okButton, { marginLeft: 8 }, customStyles.okButton as ViewStyle]}
 				onPress={() => {
 					onClose()
 					onConfirm?.()
@@ -81,9 +113,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
 		flexWrap: 'wrap',
-	},
-	button: {
-		marginLeft: 10,
 	},
 	okButton: {
 		backgroundColor: '#2196f3',

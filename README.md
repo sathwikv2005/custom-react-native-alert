@@ -1,6 +1,7 @@
 # 📱 custom-react-native-alert
 
-A **customizable global alert** system for **React Native** apps built using **Context API** and **Modal**. Easily show alerts with custom buttons and styles from anywhere in your app.
+A **customizable global alert** system for **React Native** apps using the **Context API** and **Modal**.  
+Easily show beautiful alerts with custom buttons and styles from anywhere in your app.
 
 ---
 
@@ -16,7 +17,7 @@ yarn add custom-react-native-alert
 
 ## 🔧 Setup
 
-Wrap your app with the `AlertProvider`:
+Wrap your root component with the `AlertProvider`:
 
 ```tsx
 // App.tsx
@@ -37,7 +38,7 @@ export default function App() {
 
 ## 📣 Usage
 
-Call `showAlert()` from anywhere inside the tree:
+Call `showAlert()` from anywhere inside your component tree:
 
 ```tsx
 import { useAlert } from 'custom-react-native-alert'
@@ -129,5 +130,3 @@ showAlert({
 	],
 })
 ```
-
----
