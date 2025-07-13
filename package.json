@@ -22,6 +22,9 @@
 		"type": "git",
 		"url": "https://github.com/sathwikv2005/custom-react-native-alert.git"
 	},
+	"publishConfig": {
+		"access": "public"
+	},
 	"peerDependencies": {
 		"react": ">=17.0.0",
 		"react-native": ">=0.68.0"
