@@ -1,0 +1,37 @@
+{
+	"name": "custom-react-native-alert",
+	"version": "1.0.0",
+	"description": "A customizable global alert system for React Native using context and modal.",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "tsc",
+		"prepare": "npm run build"
+	},
+	"keywords": [
+		"react-native",
+		"alert",
+		"modal",
+		"context",
+		"custom-alert",
+		"typescript"
+	],
+	"author": "Agent47",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sathwikv2005/custom-react-native-alert.git"
+	},
+	"peerDependencies": {
+		"react": ">=17.0.0",
+		"react-native": ">=0.68.0"
+	},
+	"devDependencies": {
+		"@types/react": "^18.2.63",
+		"@types/react-native": "^0.72.8",
+		"typescript": "^5.3.3"
+	},
+	"files": [
+		"dist"
+	]
+}
