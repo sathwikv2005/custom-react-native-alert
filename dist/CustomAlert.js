@@ -1,7 +1,9 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { isValidElement } from 'react';
-import { Modal, View, Text, Pressable, StyleSheet } from 'react-native';
+import { Modal, View, Text, Pressable, StyleSheet, ScrollView, } from 'react-native';
 import { isObjectButton } from './types';
+import { Dimensions } from 'react-native';
+const screenHeight = Dimensions.get('window').height;
 const CustomAlert = ({ visible, title, message, onConfirm, onClose, buttons, styles: customStyles = {}, }) => {
     const renderButtons = () => {
         if (buttons && buttons.length > 0) {
@@ -33,7 +35,7 @@ const CustomAlert = ({ visible, title, message, onConfirm, onClose, buttons, sty
                 onConfirm === null || onConfirm === void 0 ? void 0 : onConfirm();
             }, children: _jsx(Text, { style: [styles.buttonText, customStyles.okText], children: "Close" }) }));
     };
-    return (_jsx(Modal, { visible: visible, transparent: true, animationType: "fade", children: _jsx(View, { style: [styles.overlay, customStyles.overlay], children: _jsxs(View, { style: [styles.container, customStyles.container], children: [title ? (_jsx(Text, { style: [styles.title, customStyles.title], children: title })) : null, message ? (_jsx(Text, { style: [styles.message, customStyles.message], children: message })) : null, _jsx(View, { style: [styles.buttons, customStyles.buttons], children: renderButtons() })] }) }) }));
+    return (_jsx(Modal, { visible: visible, transparent: true, animationType: "fade", children: _jsx(View, { style: [styles.overlay, customStyles.overlay], children: _jsxs(View, { style: [styles.container, customStyles.container], children: [title ? (_jsx(Text, { style: [styles.title, customStyles.title], children: title })) : null, message ? (_jsx(View, { style: { maxHeight: screenHeight * 0.4, marginBottom: 20 }, children: _jsx(ScrollView, { children: _jsx(Text, { style: [styles.message, customStyles.message], children: message }) }) })) : null, _jsx(View, { style: [styles.buttons, customStyles.buttons], children: renderButtons() })] }) }) }));
 };
 const styles = StyleSheet.create({
     overlay: {
