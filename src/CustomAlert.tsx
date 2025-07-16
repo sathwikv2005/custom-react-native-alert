@@ -1,6 +1,17 @@
 import React, { ReactNode, isValidElement } from 'react'
-import { Modal, View, Text, Pressable, StyleSheet, ViewStyle, TextStyle } from 'react-native'
+import {
+	Modal,
+	View,
+	Text,
+	Pressable,
+	StyleSheet,
+	ViewStyle,
+	TextStyle,
+	ScrollView,
+} from 'react-native'
 import { AlertConfig, isObjectButton } from './types'
+import { Dimensions } from 'react-native'
+const screenHeight = Dimensions.get('window').height
 
 interface Props extends AlertConfig {
 	visible: boolean
@@ -77,8 +88,13 @@ const CustomAlert: React.FC<Props> = ({
 						<Text style={[styles.title, customStyles.title as TextStyle]}>{title}</Text>
 					) : null}
 					{message ? (
-						<Text style={[styles.message, customStyles.message as TextStyle]}>{message}</Text>
+						<View style={{ maxHeight: screenHeight * 0.4, marginBottom: 20 }}>
+							<ScrollView>
+								<Text style={[styles.message, customStyles.message as TextStyle]}>{message}</Text>
+							</ScrollView>
+						</View>
 					) : null}
+
 					<View style={[styles.buttons, customStyles.buttons as ViewStyle]}>{renderButtons()}</View>
 				</View>
 			</View>
